@@ -1,0 +1,41 @@
+CRITICAL - 2022-11-13 07:41:04 --> The framework needs the following extension(s) installed and loaded: intl.
+in SYSTEMPATH\CodeIgniter.php on line 224.
+ 1 SYSTEMPATH\CodeIgniter.php(224): CodeIgniter\Exceptions\FrameworkException::forMissingExtension('intl')
+ 2 SYSTEMPATH\CodeIgniter.php(182): CodeIgniter\CodeIgniter->resolvePlatformExtensions()
+ 3 ROOTPATH\spark(83): CodeIgniter\CodeIgniter->initialize()
+CRITICAL - 2022-11-13 07:41:21 --> The framework needs the following extension(s) installed and loaded: intl.
+in SYSTEMPATH\CodeIgniter.php on line 224.
+ 1 SYSTEMPATH\CodeIgniter.php(224): CodeIgniter\Exceptions\FrameworkException::forMissingExtension('intl')
+ 2 SYSTEMPATH\CodeIgniter.php(182): CodeIgniter\CodeIgniter->resolvePlatformExtensions()
+ 3 ROOTPATH\spark(83): CodeIgniter\CodeIgniter->initialize()
+ERROR - 2022-11-13 02:23:51 --> mysqli_sql_exception: Unknown column 'created_at' in 'field list' in C:\xampp\htdocs\backendtaller\system\Database\MySQLi\Connection.php:292
+Stack trace:
+#0 C:\xampp\htdocs\backendtaller\system\Database\MySQLi\Connection.php(292): mysqli->query('INSERT INTO `ro...', 0)
+#1 C:\xampp\htdocs\backendtaller\system\Database\BaseConnection.php(666): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ro...')
+#2 C:\xampp\htdocs\backendtaller\system\Database\BaseConnection.php(593): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ro...')
+#3 C:\xampp\htdocs\backendtaller\system\Database\BaseBuilder.php(1916): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ro...', Array, false)
+#4 C:\xampp\htdocs\backendtaller\system\Model.php(279): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\backendtaller\system\BaseModel.php(749): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\backendtaller\system\Model.php(667): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\xampp\htdocs\backendtaller\app\Controllers\API\RolController.php(27): CodeIgniter\Model->insert(Object(stdClass))
+#8 C:\xampp\htdocs\backendtaller\system\CodeIgniter.php(927): App\Controllers\API\RolController->create()
+#9 C:\xampp\htdocs\backendtaller\system\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\RolController))
+#10 C:\xampp\htdocs\backendtaller\system\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\backendtaller\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\backendtaller\system\Commands\Server\rewrite.php(46): require_once('C:\\xampp\\htdocs...')
+#13 {main}
+ERROR - 2022-11-13 03:00:09 --> mysqli_sql_exception: Cannot delete or update a parent row: a foreign key constraint fails (`tallermecanico`.`empleado`, CONSTRAINT `fk_almacen_empleado` FOREIGN KEY (`id_rol`) REFERENCES `rol` (`id_rol`)) in C:\xampp\htdocs\backendtaller\system\Database\MySQLi\Connection.php:292
+Stack trace:
+#0 C:\xampp\htdocs\backendtaller\system\Database\MySQLi\Connection.php(292): mysqli->query('DELETE FROM `ro...', 0)
+#1 C:\xampp\htdocs\backendtaller\system\Database\BaseConnection.php(666): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `ro...')
+#2 C:\xampp\htdocs\backendtaller\system\Database\BaseConnection.php(593): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `ro...')
+#3 C:\xampp\htdocs\backendtaller\system\Database\BaseBuilder.php(2391): CodeIgniter\Database\BaseConnection->query('DELETE FROM `ro...', Array, false)
+#4 C:\xampp\htdocs\backendtaller\system\Model.php(401): CodeIgniter\Database\BaseBuilder->delete()
+#5 C:\xampp\htdocs\backendtaller\system\BaseModel.php(984): CodeIgniter\Model->doDelete(Array, false)
+#6 C:\xampp\htdocs\backendtaller\app\Controllers\API\RolController.php(108): CodeIgniter\BaseModel->delete(Array)
+#7 C:\xampp\htdocs\backendtaller\system\CodeIgniter.php(927): App\Controllers\API\RolController->delete('1')
+#8 C:\xampp\htdocs\backendtaller\system\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\API\RolController))
+#9 C:\xampp\htdocs\backendtaller\system\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\backendtaller\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\backendtaller\system\Commands\Server\rewrite.php(46): require_once('C:\\xampp\\htdocs...')
+#12 {main}

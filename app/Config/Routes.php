@@ -37,6 +37,20 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
+// Grupo de rutas para roles: http://localhost:8080/api/roles
+$routes->group('api/roles', ['namespace' => 'App\Controllers\API'], function ($routes) {
+  // http://localhost:8080/api/roles -> GET
+  $routes->get('', 'RolController::index');
+  // http://localhost:8080/api/usuarios/1 --> SHOW
+  $routes->get('(:num)', 'RolController::show/$1');
+  // http://localhost:8080/api/roles/create -> POST
+  $routes->post('create', 'RolController::create');
+  // http://localhost:8080/api/roles/edit -> PUT
+  $routes->put('edit/(:num)', 'RolController::edit/$1');
+  // http://localhost:8080/api/roles/delete/1 --> DELETE
+  $routes->delete('delete/(:num)', 'RolController::delete/$1');
+});
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

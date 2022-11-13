@@ -11,7 +11,7 @@ create database if not exists tallermecanico;
 use tallermecanico;
 
 create table if not exists rol (
-  id_rol tinyint(2) not null auto_increment,
+  id_rol tinyint(5) not null auto_increment,
   tipo_rol varchar(30) not null,
   primary key (id_rol)
 );
@@ -23,7 +23,7 @@ create table if not exists almacen (
   precio_unitario int not null,
   precio_venta int not null,
   primary key (id_almacen),
-  id_rol tinyint(2),
+  id_rol tinyint(5),
   constraint fk_rol_almacen foreign key (id_rol) references rol (id_rol) on delete cascade on update cascade
 );
 
@@ -33,7 +33,7 @@ create table if not exists empleado (
   apellido_paterno varchar(255) not null,
   apellido_materno varchar(255),
   primary key (id_empleado),
-  id_rol tinyint(2),
+  id_rol tinyint(5),
   constraint fk_almacen_empleado foreign key (id_rol) references rol (id_rol)
 );
 
