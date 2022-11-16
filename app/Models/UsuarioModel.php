@@ -2,14 +2,14 @@
 
 use CodeIgniter\Model;
 
-class EmpleadoModel extends Model
+class UsuarioModel extends Model
 {
-    protected $table      =       'empleado';
-    protected $primaryKey =       'id_empleado';
+    protected $table      =       'usuario';
+    protected $primaryKey =       'id_usuario';
 
 
     protected $returnType     =   'array';
-    protected $allowedFields  =   ['nombre_empleado', 'apellido_paterno', 'apellido_materno', 'id_rol'];
+    protected $allowedFields  =   ['nombre_usuario', 'apellido_paterno', 'apellido_materno', 'password', 'id_rol'];
 
     // protected $useTimestamps  =   false;
     // protected $createdFiled   =   'created_at'; 
@@ -17,12 +17,12 @@ class EmpleadoModel extends Model
     
     // Reglas de validacion
     protected $validationRules = [
-      'nombre_empleado' => 'required|min_length[3]|max_length[255]'
+      'nombre_usuario' => 'required|min_length[3]|max_length[255]'
     ];
 
     // Mensajes personalizados
     protected $validationMessage = [
-      'nombre_empleado' => [
+      'nombre_usuario' => [
         'min_length' => 'Minimo 3 caracteres',
         'max_length' => 'Minimo 255 caracteres',
       ]

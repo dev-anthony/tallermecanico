@@ -17,13 +17,16 @@ class RolModel extends Model
     
     // Reglas de validacion
     protected $validationRules = [
-      'tipo_rol' => 'required|min_length[4]|max_length[30]'
+      'tipo_rol' => 'required|min_length[4]|max_length[30]|is_unique[rol.tipo_rol]'
     ];
 
     // Mensajes personalizados
     protected $validationMessage = [
       'tipo_rol' => [
-        'min_length' => 'Minimo 4 letras'
+        'required' => 'El campo {field} es requerido',
+        'min_length' => 'Minimo 4 caracteres',
+        'max_length' => 'Maximo 30 caracteres',
+        'is_unique' => 'El {field} ya existe',
       ]
     ];
 

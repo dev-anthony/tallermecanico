@@ -65,18 +65,18 @@ $routes->group('api/almacen', ['namespace' => 'App\Controllers\API'], function (
   $routes->delete('delete/(:num)', 'AlmacenController::delete/$1');
 });
 
-// Grupo de rutas para empleado: http://localhost:8080/api/empleado
-$routes->group('api/empleado', ['namespace' => 'App\Controllers\API'], function ($routes) {
-  // http://localhost:8080/api/empleado -> GET
-  $routes->get('', 'EmpleadoController::index');
-  // http://localhost:8080/api/empleado/1 --> SHOW
-  $routes->get('(:num)', 'EmpleadoController::show/$1');
-  // http://localhost:8080/api/empleado/create -> POST
-  $routes->post('create', 'EmpleadoController::create');
-  // http://localhost:8080/api/empleado/edit -> PUT
-  $routes->put('edit/(:num)', 'EmpleadoController::edit/$1');
-  // http://localhost:8080/api/empleado/delete/1 --> DELETE
-  $routes->delete('delete/(:num)', 'EmpleadoController::delete/$1');
+// Grupo de rutas para usuario: http://localhost:8080/api/usuario
+$routes->group('api/usuario', ['namespace' => 'App\Controllers\API'], function ($routes) {
+  // http://localhost:8080/api/usuario -> GET
+  $routes->get('', 'UsuarioController::index');
+  // http://localhost:8080/api/usuario/1 --> SHOW
+  $routes->get('(:num)', 'UsuarioController::show/$1');
+  // http://localhost:8080/api/usuario/create -> POST
+  $routes->post('create', 'UsuarioController::create');
+  // http://localhost:8080/api/usuario/edit -> PUT
+  $routes->put('edit/(:num)', 'UsuarioController::edit/$1');
+  // http://localhost:8080/api/usuario/delete/1 --> DELETE
+  $routes->delete('delete/(:num)', 'UsuarioController::delete/$1');
 });
 
 // Grupo de rutas para vehiculo: http://localhost:8080/api/vehiculo

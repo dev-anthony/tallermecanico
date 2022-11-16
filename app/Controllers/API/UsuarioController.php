@@ -2,20 +2,20 @@
 
 namespace App\Controllers\API;
 
-use App\Models\EmpleadoModel;
+use App\Models\UsuarioModel;
 use CodeIgniter\RESTful\ResourceController;
 
-class EmpleadoController extends ResourceController
+class UsuarioController extends ResourceController
 {
 	public function __construct()
 	{
-		$this->model = $this->setModel(new EmpleadoModel());			
+		$this->model = $this->setModel(new UsuarioModel());			
 	}
 
 	public function index()
 	{
-		$empleado = $this->model->findAll();
-		return $this->respond($empleado);
+		$usuario = $this->model->findAll();
+		return $this->respond($usuario);
 	}
 
 	public function show($id = null)
@@ -25,14 +25,14 @@ class EmpleadoController extends ResourceController
       if ($id = $this->model->find($id)) {
         return $this->respond(
           [
-            'msg' => 'El empleado se encontro correctamente',
+            'msg' => 'El usuario se encontro correctamente',
             'rol' => $id
           ],
           200
         );
       } else {
         return $this->respond(
-          ['error' => 'No se puede encontrar el empleado'],
+          ['error' => 'No se puede encontrar el usuario'],
           500
         );
       }
@@ -42,47 +42,48 @@ class EmpleadoController extends ResourceController
     }
   }
 
-	public function create()
-	{
-		try {
-			//code...
-			$empleado = $this->request->getJSON(true);
-			
-			if($this->model->insert($empleado)):
-				return $this->respondCreated([
+  public function create()
+  {
+    try {
+      // Lo que hace es guardar los datos validados y haseha el password
+      $usuario = $this->request->getJSON(true);
+      $usuario['password'] = password_hash($usuario['password'], PASSWORD_DEFAULT);
+
+      if ($this->model->insert($usuario) == false) {
+        return $this->fail($this->model->validation->listErrors());
+      } else {
+
+        $this->model->insert($usuario);
+        return $this->respondCreated([
           'status' => 'created',
-          'message' => 'empleado creado',
-          'data' => $empleado,
+          'message' => 'Usuario creado',
+          'data' => $usuario,
         ], 201);
-
-			else:
-				return $this->failValidationErrors($this->model->validation->listErrors());
-			endif;
-
-		} catch (\Exception $e) {
-			//Exception $e;
-			return $this->failServerError('Ocurrio algo con el servidor!!', $e);
-		}
-	}
+      }
+    } catch (\Exception $e) {
+      return $this->failServerError('Error en el servidor', $e->getMessage());
+    }
+  }
 
 	public function edit($id = null)
   {
-    $empleado = $this->request->getJSON(true);
+    $usuario = $this->request->getJSON(true);
+    $usuario['password'] = password_hash($usuario['password'], PASSWORD_DEFAULT);
 
     try {
       //code...
       if ($id = $this->model->find($id)) {
-        $this->model->update($id, $empleado);
+        $this->model->update($id, $usuario);
         return $this->respond(
           [
-            'msg' => 'El empleado se actualizo correctamente',
-            'rol' => $empleado
+            'msg' => 'El usuario se actualizo correctamente',
+            'rol' => $usuario
           ],
           200
         );
       } else {
         return $this->respond(
-          ['error' => 'No se puede encontrar el empleado'],
+          ['error' => 'No se puede encontrar el usuario'],
           500
         );
       }
@@ -97,29 +98,29 @@ class EmpleadoController extends ResourceController
       //code...
       if ($id == null) {
         return $this->respond(
-          ['error' => 'No se puede eliminar el empleado'],
+          ['error' => 'No se puede eliminar el usuario'],
           500
         );
       } else {
-        $empleado = $this->model->find($id);
-        if ($empleado) {
+        $usuario = $this->model->find($id);
+        if ($usuario) {
           if ($this->model->delete($id)) {
             return $this->respond(
               [
-                'msg' => 'El empleado se elimino correctamente',
-                'rol' => $empleado
+                'msg' => 'El usuario se elimino correctamente',
+                'rol' => $usuario
               ],
               200
             );
           } else {
             return $this->respond(
-              ['error' => 'No se puede eliminar el empleado'],
+              ['error' => 'No se puede eliminar el usuario'],
               500
             );
           }
         } else {
           return $this->respond(
-            ['error' => 'El empleado no existe!!'],
+            ['error' => 'El usuario no existe!!'],
             500
           );
         }
